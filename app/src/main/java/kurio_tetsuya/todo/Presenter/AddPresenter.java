@@ -3,6 +3,7 @@ package kurio_tetsuya.todo.Presenter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class AddPresenter   {
 
 
     public void saveTask(final String task_name, final String desc, final String sEndDate, final String status) {
+        Log.e("Save","Save");
         class SaveTask extends AsyncTask<Void, Void, Void> {
 
             @Override
