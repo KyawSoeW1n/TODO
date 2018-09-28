@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.BindViews;
 import kurio_tetsuya.todo.Database.DatabaseClient;
 import kurio_tetsuya.todo.Presenter.AddPresenter;
 import kurio_tetsuya.todo.R;
@@ -21,7 +23,6 @@ import kurio_tetsuya.todo.Model.TaskModel;
 import kurio_tetsuya.todo.View.IAddView;
 
 public class AddTaskActivity extends AppCompatActivity implements IAddView{
-
     private EditText editTextTask, editTextDesc;
     private TextView tv_end_date;
     DatePickerDialog datePickerDialog;
