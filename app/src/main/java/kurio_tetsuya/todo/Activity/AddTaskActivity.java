@@ -6,56 +6,93 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import kurio_tetsuya.todo.Database.DatabaseClient;
 import kurio_tetsuya.todo.Presenter.AddPresenter;
 import kurio_tetsuya.todo.R;
 import kurio_tetsuya.todo.Model.TaskModel;
 import kurio_tetsuya.todo.View.IAddView;
 
-public class AddTaskActivity extends AppCompatActivity implements IAddView{
+public class AddTaskActivity extends AppCompatActivity implements IAddView {
+    @BindView(R.id.editTextDesc)
+    EditText editTextDesc;
 
-    private EditText editTextTask, editTextDesc;
-    private TextView tv_end_date;
+    @BindView(R.id.editTextTask)
+    EditText editTextTask;
+
+    @BindView(R.id.tv_end_date)
+    TextView tv_end_date;
+    //   private EditText editTextTask, editTextDesc;
+    //  private TextView tv_end_date;
     DatePickerDialog datePickerDialog;
-    String sTask,sDesc,sStatus,sEndDate;
+    //    String sTask, sDesc, sStatus, sEndDate;
     private AddPresenter addPresenter;
+
+    @OnClick(R.id.button_save)
+    public void onClick() {
+        Log.e("Click", "Click");
+        if (isValidate()) {
+            addPresenter.saveTask(editTextTask.getText().toString().trim(),
+                    editTextTask.getText().toString().trim(),
+                    tv_end_date.getText().toString().trim(), "To Do");
+        }
+       /* Toast.makeText(MainActivity.this,
+                "Hello from Butterknife OnClick annotation", Toast.LENGTH_SHORT).show();*/
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-
-        editTextTask = findViewById(R.id.editTextTask);
+        ButterKnife.bind(this);
+        addPresenter = new AddPresenter(getApplicationContext(), this);
+      /*  editTextTask = findViewById(R.id.editTextTask);
         editTextDesc = findViewById(R.id.editTextDesc);
-        tv_end_date = findViewById(R.id.tv_end_date);
+        tv_end_date = findViewById(R.id.tv_end_date);*/
 
-        findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
+       /* findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isValidate()){
+                if (isValidate()) {
                     addPresenter.saveTask(editTextTask.getText().toString().trim(),
-                            editTextDesc.getText().toString().trim(),
-                            tv_end_date.getText().toString().trim(),"To Do");
+                            editTextTask.getText().toString().trim(),
+                            tv_end_date.getText().toString().trim(), "To Do");
                 }
             }
-        });
+        });*/
     }
-    public boolean isValidate(){
-        boolean isvalidate=false;
-        if(TextUtils.isEmpty(editTextTask.getText())){
+
+    public boolean isValidate() {
+        boolean isvalidate = false;
+        if (TextUtils.isEmpty(editTextTask.getText())) {
             Toast.makeText(this, "Enter Task Name", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(editTextDesc.getText())){
+        } else if (TextUtils.isEmpty(editTextDesc.getText())) {
             Toast.makeText(this, "Enter Task Description", Toast.LENGTH_SHORT).show();
+        } else if (tv_end_date.getText().toString().trim().equals("End Date")) {
+            Toast.makeText(this, "Select End Date", Toast.LENGTH_SHORT).show();
+        } else if (!TextUtils.isEmpty(editTextDesc.getText()) && !TextUtils.isEmpty(editTextTask.getText())) {
+            isvalidate = true;
         }
+        Log.e("Validate", "" + isvalidate);
         return isvalidate;
     }
 
@@ -84,7 +121,7 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView{
     public void onSuccess() {
         Toast.makeText(this, "Successfully Added", Toast.LENGTH_SHORT).show();
         finish();
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
