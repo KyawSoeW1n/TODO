@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.UpdateTaskActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Task"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
+
+        <EditText
+            android:id="@+id/editTextTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editTextDesc"
+            android:hint="task?" />
+
+        <EditText
+            android:id="@+id/editTextDesc"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_above="@+id/tv_end_date"
+            android:gravity="start"
+            android:hint="description..."
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/tv_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linear"
+            android:hint="finish by?"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_update">
+
+            <CheckBox
+                android:layout_weight="1"
+                android:id="@+id/checkBoxDoing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Mark as Doing" />
+            <CheckBox
+                android:layout_weight="1"
+                android:id="@+id/checkBoxFinished"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Mark as finished" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/button_update"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_delete"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary"
+            android:text="Update"
+            android:onClick="onClick"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLight" />
+
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="200dp"
+            android:onClick="onClick"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorRed"
+            android:text="Delete"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLight" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
