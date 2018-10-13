@@ -2,9 +2,8 @@ package kurio_tetsuya.todo.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -13,18 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import kurio_tetsuya.todo.Database.DatabaseClient;
 import kurio_tetsuya.todo.Presenter.AddPresenter;
 import kurio_tetsuya.todo.R;
-import kurio_tetsuya.todo.Model.TaskModel;
 import kurio_tetsuya.todo.View.IAddView;
 
 public class AddTaskActivity extends AppCompatActivity implements IAddView {
@@ -101,6 +95,7 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView {
         int mYear = c.get(Calendar.YEAR); // current year
         int mMonth = c.get(Calendar.MONTH); // current month
         int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+
         // date picker dialog
         datePickerDialog = new DatePickerDialog(AddTaskActivity.this,
                 new DatePickerDialog.OnDateSetListener() {

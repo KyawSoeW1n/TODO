@@ -2,11 +2,9 @@ package kurio_tetsuya.todo.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,10 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import kurio_tetsuya.todo.Database.DatabaseClient;
+import kurio_tetsuya.todo.Model.TaskModel;
 import kurio_tetsuya.todo.Presenter.UpdatePresenter;
 import kurio_tetsuya.todo.R;
-import kurio_tetsuya.todo.Model.TaskModel;
 import kurio_tetsuya.todo.View.IUpdateView;
 
 public class UpdateTaskActivity extends AppCompatActivity implements IUpdateView {
@@ -131,6 +128,8 @@ public class UpdateTaskActivity extends AppCompatActivity implements IUpdateView
             startActivity(new Intent(this,MainActivity.class));
         }else{
             Toast.makeText(this, "Delete Successfully", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
         }
     }
 

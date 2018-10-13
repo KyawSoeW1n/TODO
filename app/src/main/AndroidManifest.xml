@@ -25,6 +25,9 @@
         <activity
             android:name=".Activity.AddTaskActivity"
             android:windowSoftInputMode="adjustPan|adjustResize" />
+
+        <receiver android:name=".Service.AlarmReceiver" />
+        <service android:name=".Service.NotiService" />
     </application>
 
 </manifest>
