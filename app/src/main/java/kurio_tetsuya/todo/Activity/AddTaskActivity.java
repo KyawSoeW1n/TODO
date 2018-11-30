@@ -68,17 +68,6 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView {
       /*  editTextTask = findViewById(R.id.editTextTask);
         editTextDesc = findViewById(R.id.editTextDesc);
         tv_end_date = findViewById(R.id.tv_end_date);*/
-
-       /* findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isValidate()) {
-                    addPresenter.saveTask(editTextTask.getText().toString().trim(),
-                            editTextTask.getText().toString().trim(),
-                            tv_end_date.getText().toString().trim(), "To Do");
-                }
-            }
-        });*/
     }
 
     public boolean isValidate() {
