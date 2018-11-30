@@ -44,6 +44,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TasksViewHolde
         holder.textViewTask.setText(t.getTask());
         holder.textViewDesc.setText(t.getDesc());
         holder.textViewEndDate.setText(t.getEnd_date());
+      /*  if (t.isFinished())
+            holder.textViewStatus.setText("Completed");
+        else
+            holder.textViewStatus.setText("Not Completed");*/
     }
 
     @Override
@@ -67,15 +71,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TasksViewHolde
         @Override
         public void onClick(View view) {
             TaskModel task = taskList.get(getAdapterPosition());
+
             Intent intent = new Intent(mCtx, UpdateTaskActivity.class);
             intent.putExtra("task", task);
             ((Activity) mCtx).finish();
             mCtx.startActivity(intent);
+
         }
     }
 
     public void changeData(List<TaskModel> list) {
         this.taskList = list;
+        Log.e("#3333", "" + list.size());
         notifyDataSetChanged();
     }
 }
