@@ -41,10 +41,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         buttonAddTask = findViewById(R.id.floating_button_add);
         listData = new ArrayList<>();
-//        pager=findViewById(R.id.pager);
         presenter = new MainPresenter(this,this);
         adapter = new TaskAdapter(MainActivity.this, listData);
-//        pager_adapter=new ViewPagerAdapter();
         recyclerView.setAdapter(adapter);
         buttonAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
