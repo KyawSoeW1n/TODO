@@ -1,14 +1,11 @@
-package kurio_tetsuya.todo.Activity;
+package kurio_tetsuya.todo.ui.activity;
 
 import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
 
-import android.app.Application;
 import android.os.StrictMode;
 import android.util.Log;
-
-import com.squareup.leakcanary.LeakCanary;
 
 public class ExampleApplication extends Application {
     @Override public void onCreate() {

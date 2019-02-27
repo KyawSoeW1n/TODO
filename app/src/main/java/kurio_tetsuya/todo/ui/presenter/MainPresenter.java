@@ -1,16 +1,14 @@
-package kurio_tetsuya.todo.Presenter;
+package kurio_tetsuya.todo.ui.presenter;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import kurio_tetsuya.todo.Database.DatabaseClient;
-import kurio_tetsuya.todo.Model.TaskModel;
-import kurio_tetsuya.todo.View.IMainView;
+import kurio_tetsuya.todo.database.DatabaseClient;
+import kurio_tetsuya.todo.model.TaskModel;
+import kurio_tetsuya.todo.ui.view.IMainView;
 
 public class MainPresenter {
     Context c;

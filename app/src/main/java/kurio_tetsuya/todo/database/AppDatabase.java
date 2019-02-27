@@ -1,9 +1,9 @@
-package kurio_tetsuya.todo.Database;
+package kurio_tetsuya.todo.database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import kurio_tetsuya.todo.Model.TaskModel;
+import kurio_tetsuya.todo.model.TaskModel;
 
 @Database(entities = {TaskModel.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

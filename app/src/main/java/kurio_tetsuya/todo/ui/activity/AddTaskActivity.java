@@ -1,6 +1,9 @@
-package kurio_tetsuya.todo.Activity;
+package kurio_tetsuya.todo.ui.activity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,11 +20,13 @@ import java.util.Calendar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import kurio_tetsuya.todo.Presenter.AddPresenter;
+//import kurio_tetsuya.todo.service.AlarmReceiver;
+import kurio_tetsuya.todo.ui.presenter.AddPresenter;
 import kurio_tetsuya.todo.R;
-import kurio_tetsuya.todo.View.IAddView;
+import kurio_tetsuya.todo.ui.view.IAddView;
 
 public class AddTaskActivity extends AppCompatActivity implements IAddView {
+    int mYear,mMonth,mDay;
     @BindView(R.id.editTextDesc)
     EditText editTextDesc;
 
@@ -30,10 +35,7 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView {
 
     @BindView(R.id.tv_end_date)
     TextView tv_end_date;
-    //   private EditText editTextTask, editTextDesc;
-    //  private TextView tv_end_date;
     DatePickerDialog datePickerDialog;
-    //    String sTask, sDesc, sStatus, sEndDate;
     private AddPresenter addPresenter;
 
     @OnClick(R.id.button_save)
@@ -44,13 +46,6 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView {
                     editTextTask.getText().toString().trim(),
                     tv_end_date.getText().toString().trim(), "To Do");
         }
-       /* Toast.makeText(MainActivity.this,
-                "Hello from Butterknife OnClick annotation", Toast.LENGTH_SHORT).show();*/
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
@@ -59,20 +54,6 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView {
         setContentView(R.layout.activity_add_task);
         ButterKnife.bind(this);
         addPresenter = new AddPresenter(getApplicationContext(), this);
-      /*  editTextTask = findViewById(R.id.editTextTask);
-        editTextDesc = findViewById(R.id.editTextDesc);
-        tv_end_date = findViewById(R.id.tv_end_date);*/
-
-       /* findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isValidate()) {
-                    addPresenter.saveTask(editTextTask.getText().toString().trim(),
-                            editTextTask.getText().toString().trim(),
-                            tv_end_date.getText().toString().trim(), "To Do");
-                }
-            }
-        });*/
     }
 
     public boolean isValidate() {
@@ -86,15 +67,14 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView {
         } else if (!TextUtils.isEmpty(editTextDesc.getText()) && !TextUtils.isEmpty(editTextTask.getText())) {
             isvalidate = true;
         }
-        Log.e("Validate", "" + isvalidate);
         return isvalidate;
     }
 
     public void pickDate(View view) {
         final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR); // current year
-        int mMonth = c.get(Calendar.MONTH); // current month
-        int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+        mYear = c.get(Calendar.YEAR); // current year
+        mMonth = c.get(Calendar.MONTH); // current month
+        mDay = c.get(Calendar.DAY_OF_MONTH); // current day
 
         // date picker dialog
         datePickerDialog = new DatePickerDialog(AddTaskActivity.this,
@@ -117,6 +97,17 @@ public class AddTaskActivity extends AppCompatActivity implements IAddView {
         Toast.makeText(this, "Successfully Added", Toast.LENGTH_SHORT).show();
         finish();
         startActivity(new Intent(this, MainActivity.class));
+        Calendar cal = Calendar.getInstance();
+
+        cal.setTimeInMillis(System.currentTimeMillis());
+        cal.clear();
+        cal.set(mYear,mMonth,mDay,12,00);
+
+        AlarmManager alarmMgr = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        // cal.add(Calendar.SECOND, 5);
+        alarmMgr.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
     }
 
     @Override

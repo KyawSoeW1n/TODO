@@ -1,4 +1,4 @@
-package kurio_tetsuya.todo.Model;
+package kurio_tetsuya.todo.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -38,24 +38,6 @@ public class TaskModel implements Serializable {
 
     @ColumnInfo(name = "End_Date")
     private String end_date;
-
-
-
-/*    public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
-    }*/
-
- /*   public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }*/
 
     public String getDesc() {
         return desc;

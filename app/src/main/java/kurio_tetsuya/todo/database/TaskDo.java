@@ -1,4 +1,4 @@
-package kurio_tetsuya.todo.Database;
+package kurio_tetsuya.todo.database;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -6,10 +6,9 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import kurio_tetsuya.todo.Model.TaskModel;
+import kurio_tetsuya.todo.model.TaskModel;
 
 @Dao
 public interface TaskDo {

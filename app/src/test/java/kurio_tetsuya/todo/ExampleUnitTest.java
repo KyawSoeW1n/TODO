@@ -1,20 +1,13 @@
 package kurio_tetsuya.todo;
 
-import android.util.Log;
-
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import kurio_tetsuya.todo.Activity.MainActivity;
-import kurio_tetsuya.todo.Model.TaskModel;
-import kurio_tetsuya.todo.Presenter.AddPresenter;
-import kurio_tetsuya.todo.Presenter.MainPresenter;
-import kurio_tetsuya.todo.Presenter.UpdatePresenter;
-import kurio_tetsuya.todo.View.IMainView;
+import kurio_tetsuya.todo.model.TaskModel;
+import kurio_tetsuya.todo.ui.presenter.AddPresenter;
+import kurio_tetsuya.todo.ui.presenter.MainPresenter;
+import kurio_tetsuya.todo.ui.presenter.UpdatePresenter;
 
 import static org.junit.Assert.*;
 

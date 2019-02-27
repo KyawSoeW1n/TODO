@@ -1,4 +1,4 @@
-package kurio_tetsuya.todo.Database;
+package kurio_tetsuya.todo.database;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;

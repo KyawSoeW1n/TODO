@@ -1,4 +1,4 @@
-package kurio_tetsuya.todo.Adapter;
+package kurio_tetsuya.todo.ui.adapter;
 
 
 import android.app.Activity;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import kurio_tetsuya.todo.Activity.UpdateTaskActivity;
-import kurio_tetsuya.todo.Model.TaskModel;
+import kurio_tetsuya.todo.ui.activity.UpdateTaskActivity;
+import kurio_tetsuya.todo.model.TaskModel;
 import kurio_tetsuya.todo.R;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TasksViewHolder> {

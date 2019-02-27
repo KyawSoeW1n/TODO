@@ -1,4 +1,4 @@
-package kurio_tetsuya.todo.Presenter;
+package kurio_tetsuya.todo.ui.presenter;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -10,10 +10,11 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import kurio_tetsuya.todo.Database.DatabaseClient;
-import kurio_tetsuya.todo.Model.TaskModel;
-import kurio_tetsuya.todo.Service.AlarmReceiver;
-import kurio_tetsuya.todo.View.IAddView;
+import kurio_tetsuya.todo.database.DatabaseClient;
+import kurio_tetsuya.todo.model.TaskModel;
+//import kurio_tetsuya.todo.service.AlarmReceiver;
+import kurio_tetsuya.todo.ui.activity.MainActivity;
+import kurio_tetsuya.todo.ui.view.IAddView;
 
 import static android.content.ContentValues.TAG;
 import static android.content.Context.ALARM_SERVICE;
@@ -60,7 +61,7 @@ public class AddPresenter   {
                 calendar.set(Calendar.DAY_OF_MONTH, keyword.get(0));
                 delay = calendar.getTimeInMillis();
                 Log.e(TAG, "" + delay);
-                Intent intent = new Intent(c, AlarmReceiver.class);
+                Intent intent = new Intent(c, MainActivity.class);
 //                PendingIntent pendingIntent = PendingIntent.getBroadcast(c, 0, intent, 0);
                 alarmManager = (AlarmManager) c.getSystemService(ALARM_SERVICE);
                 final int _id = (int) System.currentTimeMillis();

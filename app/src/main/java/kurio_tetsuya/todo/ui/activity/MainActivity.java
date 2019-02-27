@@ -1,5 +1,8 @@
-package kurio_tetsuya.todo.Activity;
+package kurio_tetsuya.todo.ui.activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,13 +15,14 @@ import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-import kurio_tetsuya.todo.Adapter.TaskAdapter;
-import kurio_tetsuya.todo.Model.TaskModel;
-import kurio_tetsuya.todo.Presenter.MainPresenter;
+import kurio_tetsuya.todo.ui.adapter.TaskAdapter;
+import kurio_tetsuya.todo.model.TaskModel;
+import kurio_tetsuya.todo.ui.presenter.MainPresenter;
 import kurio_tetsuya.todo.R;
-import kurio_tetsuya.todo.View.IMainView;
+import kurio_tetsuya.todo.ui.view.IMainView;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, IMainView {
     private FloatingActionButton buttonAddTask;
@@ -32,13 +36,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.getTasks("To Do");
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         listData = new ArrayList<>();
         tab_layout = findViewById(R.id.tab_layout);
@@ -47,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         buttonAddTask = findViewById(R.id.floating_button_add);
         listData = new ArrayList<>();
 //        pager=findViewById(R.id.pager);
-        presenter = new MainPresenter(this,this);
+        presenter = new MainPresenter(this, this);
+        presenter.getTasks("To Do");
         adapter = new TaskAdapter(MainActivity.this, listData);
 //        pager_adapter=new ViewPagerAdapter();
         recyclerView.setAdapter(adapter);
@@ -55,14 +59,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
-//                finish();
                 startActivity(intent);
             }
         });
         tab_layout.setOnTabSelectedListener(this);
         presenter.getTasks("To Do");
     }
-
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         switch (tab.getPosition()) {
@@ -108,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public void showList(List<TaskModel> list) {
         adapter.changeData(list);
-        Log.e("Show List","showList");
     }
 
     @Override

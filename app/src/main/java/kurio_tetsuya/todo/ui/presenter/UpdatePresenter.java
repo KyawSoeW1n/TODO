@@ -1,16 +1,12 @@
-package kurio_tetsuya.todo.Presenter;
+package kurio_tetsuya.todo.ui.presenter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
-import kurio_tetsuya.todo.Activity.MainActivity;
-import kurio_tetsuya.todo.Activity.UpdateTaskActivity;
-import kurio_tetsuya.todo.Database.DatabaseClient;
-import kurio_tetsuya.todo.Model.TaskModel;
-import kurio_tetsuya.todo.View.IUpdateView;
+import kurio_tetsuya.todo.database.DatabaseClient;
+import kurio_tetsuya.todo.model.TaskModel;
+import kurio_tetsuya.todo.ui.view.IUpdateView;
 
 public class UpdatePresenter {
 

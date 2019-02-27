@@ -1,4 +1,4 @@
-package kurio_tetsuya.todo.Activity;
+package kurio_tetsuya.todo.ui.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,10 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import kurio_tetsuya.todo.Model.TaskModel;
-import kurio_tetsuya.todo.Presenter.UpdatePresenter;
+import com.squareup.haha.perflib.Main;
+
+import kurio_tetsuya.todo.model.TaskModel;
+import kurio_tetsuya.todo.ui.presenter.UpdatePresenter;
 import kurio_tetsuya.todo.R;
-import kurio_tetsuya.todo.View.IUpdateView;
+import kurio_tetsuya.todo.ui.view.IUpdateView;
 
 public class UpdateTaskActivity extends AppCompatActivity implements IUpdateView {
 
@@ -43,11 +45,19 @@ public class UpdateTaskActivity extends AppCompatActivity implements IUpdateView
         task = (TaskModel) getIntent().getSerializableExtra("task");
         loadTask(task);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(UpdateTaskActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void onClick(View v){
         switch (v.getId()){
             case R.id.button_update:
                 if (isValidate()){
-                    String status="";
+                    String status;
                     if(checkBoxDoing.isChecked()){
                         status="Doing";
                     }else if(checkBoxFinished.isChecked()){
@@ -65,10 +75,6 @@ public class UpdateTaskActivity extends AppCompatActivity implements IUpdateView
                 break;
         }
     }
-/*
-    public boolean isValidate(){
-
-    }*/
 
     private void showDialog() {
 
